@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoTrade UI</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .sidebar {
+            background-color: #1c1c1c;
+            height: 100vh;
+            padding: 20px;
+        }
+        .sidebar a {
+            color: #ffffff;
+            display: block;
+            padding: 10px 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #1c1c1c;
+            border: none;
+            margin-bottom: 20px;
+            padding: 30px; /* Added more padding here */
+        }
+        .card-header, .card-body {
+            color: #ffffff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .chart {
+            height: 300px;
+            background-color: #2c2c2c;
+            margin-bottom: 20px;
+        }
+        .trading-activity {
+            background-color: #2c2c2c;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .progress-bar-thick {
+            height: 20px;
+        }
+        .menu-items {
+            display: none;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .menu-items {
+              display: block;
+            }
+
+            .sidebar{
+              display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                <h2>CryptoTrade</h2>
+                <a href="#" class="menu-icon"><i class="material-icons">menu</i></a>
+                <div class="menu-items">
+                    <a href="#">Market</a>
+                    <a href="#">Portfolio</a>
+                    <a href="#">Transfer</a>
+                    <a href="#">Funds</a>
+                    <a href="#">Transactions</a>
+                    <a href="#">Settings</a>
+                    <div class="mt-4">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Dark</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Ripple (XRP)</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Market Cap: $2.24M USD</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Volume: $645.3K USD</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Circulating Supply: 321.17K XRP</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>All-time High: $71.21K USD</p>
+                                    </div>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="priceChart" width="400" height="200"></canvas>
+                                </div>
+                                <div class="trading-activity">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success progress-bar-thick" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100">
+                                            84% Buy
+                                        </div>
+                                        <div class="progress-bar bg-danger progress-bar-thick" role="progressbar" style="width: 16%" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100">
+                                            84% Sell
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Buy/Sell</h3>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="coin">Coin</label>
+                                        <select class="form-control" id="coin">
+                                            <option>Bitcoin (BTC)</option>
+                                            <option>Ethereum (ETH)</option>
+                                            <option>Litecoin (LTC)</option>
+                                            <option>Binance Coin (BNB)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="text" class="form-control" id="amount" value="$2,745.10 USD">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="total">Total</label>
+                                        <input type="text" class="form-control" id="total" value="$2,745.10 USD" readonly>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Buy BTC</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Also see</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Bitcoin (BTC): $13,925</p>
+                                <p>Ethereum (ETH): $13,925</p>
+                                <p>Litecoin (LTC): $6,315</p>
+                                <p>Binance Coin (BNB): $299.1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('priceChart').getContext('2d');
+        var priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Price',
+                    data: [100, 150, 120, 170, 130, 160],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
